@@ -1,3 +1,5 @@
+#!/bin/bash
+
 repo_dir=$HOME/.sgit
 repo_filename=$repo_dir/$filename
 installed_dir=/usr/bin/
@@ -41,8 +43,8 @@ then
                 #echo "Please cd to $repo_dir to config your git remote info(needed by the 'push'/'pull' subcommand)"
         fi
 else
-        echo 'Usage: sgit [subcmd] filename'
-        echo 'subcmd = help|list|ci|push|pull|install|setremote'
+        echo 'Usage: sgit [ci] filename'
+        echo 'sgit help|list|setremote|push|pull|install'
         exit
 fi
 
@@ -135,9 +137,13 @@ case $subcmd in
                 [ $? = 0 ] && echo -e 'sgit installed. \e[0;32;1m[OK!]\e[0m', to uninstall ,just sudo rm /usr/bin/sgit
                 exit
                 ;;
+        'help')
+	        echo 'Usage: sgit [ci] filename'
+	        echo 'sgit help|list|setremote|push|pull|install'
+	        ;;
         *)
-                echo 'Usage: sgit [subcmd] filename'
-                echo 'subcmd = none|ci|push|pull|install'
+	        echo 'Usage: sgit [ci] filename'
+	        echo 'sgit help|list|setremote|push|pull|install'
                 exit
                 ;;
 esac
