@@ -74,10 +74,18 @@ case $subcmd in
                 then
                         echo remote has been set:
                         git remote -v
-                        echo sgit setremote
+                        echo -E 'Would you really want to remove the old setting and set new?[y/n]'
+                        read yes
+                        if ! [ x$yes = xy ]
+                        then
+                                echo setremote aborted.
+                                exit
+                        else
+                                git remote rm sgitremote
+                        fi
                         exit
                 fi
-                echo the setremote subcmd would make a bare clone of your sgit repository, then scp to your git remote server
+                echo The setremote subcmd would make a bare clone of your sgit repository, then scp to your git remote server
                 echo -E 'continue?[y/n]'
                 read yes
                 if ! [ x$yes = xy ]
