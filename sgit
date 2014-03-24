@@ -69,6 +69,23 @@ case $subcmd in
                 ;;
         'setremote')
                 cd $repo_dir
+                remote=`git remote -v|grep sgitremote|cut -f1|head -n1` #get the remote name, need to be 'sgitremote'
+                if [ x$remote = xsgitremote ]
+                then
+                        echo remote has been set:
+                        git remote -v
+                        echo sgit setremote canceled.
+                        exit
+                fi
+                echo the setremote subcmd would make a bare clone of your sgit repository, then scp to your git remote server
+                echo -E 'continue?[y/n]'
+                read yes
+                if ! [ x$yes = xy ]
+                then
+                        echo setremote aborted.
+                        exit
+                fi
+                cd $repo_dir
                 if [ -d sgitremote.git ]
                 then
                         rm -rf sgitremote.git
@@ -80,7 +97,9 @@ case $subcmd in
                 #echo sgit would create the remote bare repo automatically
                 echo -E Server:
                 read server
-                scp -v -r sgitremote.git $server
+                echo ''
+                scp -r sgitremote.git $server
+                git remote rm sgitremote
                 git remote add sgitremote $server
                 ;;
         'pull')
