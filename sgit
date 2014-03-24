@@ -1,7 +1,6 @@
 #!/bin/bash
 
 repo_dir=$HOME/.sgit
-repo_filename=$repo_dir/$filename
 installed_dir=/usr/bin/
 me_dir=$(cd `dirname $0`; pwd)
 #install is a special case
@@ -15,6 +14,7 @@ then
                 # $1 must be a filename
                 filename=$1
                 filename_fullpath=$PWD/$1
+                repo_filename=$repo_dir/$filename
                 subcmd='none'
                 #copy file
                 if ! [ -d $repo_dir ]
@@ -40,6 +40,7 @@ elif [ $# -eq 2 ]
 then
         subcmd=$1
         filename=$2
+        repo_filename=$repo_dir/$filename
         #Ensure repo directory
         if ! [ -d $repo_dir ]
         then
@@ -75,8 +76,8 @@ case $subcmd in
                 cd $repo_dir
                 git add $repo_filename
                 git commit $repo_filename -m "sgit update $filename"
-                [ $? = 0 ] && echo -e "sgit commited \e[0;32;1m[OK!]\e[0m\n Use 'sgit push $filename' to push to remote"
-                ! [ $? = 0 ] && echo -e "sgit push $filename \e[0;31;1m[failed!]\e[0m"
+                [ $? = 0 ] && echo -e "sgit commited \e[0;32;1m[OK!]\e[0m"
+                ! [ $? = 0 ] && echo -e "sgit commit $filename \e[0;31;1m[failed!]\e[0m"
                 exit
                 ;;
         'setremote')
@@ -163,3 +164,4 @@ case $subcmd in
                 exit
                 ;;
 esac
+
