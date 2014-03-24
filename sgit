@@ -6,7 +6,7 @@ me_dir=$(cd `dirname $0`; pwd)
 
 if [ $# -eq 1 ]
 then
-        if [ $1 = 'install' ] || [ $1 = 'list' ] || [ $1 = 'setremote' ] || [ $1 = 'help' ]
+        if [ $1 = 'install' ] || [ $1 = 'list' ] || [ $1 = 'setremote' ] || [ $1 = 'help' ] || [ $1 = 'push' ] || [ $1 = 'pull' ]
         then
                 subcmd=$1
         else
