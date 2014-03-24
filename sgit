@@ -63,7 +63,7 @@ case $subcmd in
                 cd $repo_dir
                 git add $repo_filename
                 git commit $repo_filename -m "sgit update $filename"
-                [ $? = 0 ] && echo -e "sgit commited \e[0;32;1m[OK!]\e[0m,\n use 'sgit push $filename' to push to remote"
+                [ $? = 0 ] && echo -e "sgit commited \e[0;32;1m[OK!]\e[0m\n Use 'sgit push $filename' to push to remote"
                 ! [ $? = 0 ] && echo -e "sgit push $filename \e[0;31;1m[failed!]\e[0m"
                 exit
                 ;;
