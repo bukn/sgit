@@ -104,7 +104,7 @@ case $subcmd in
                 ;;
         'pull')
                 cd $repo_dir
-                remote=`git remote -v|grep origin|cut -f1|head -n1` #get the remote name, need to be 'sgitremote'
+                remote=`git remote -v|grep sgitremote|cut -f1|head -n1` #get the remote name, need to be 'sgitremote'
                 if [ x$remote = xsgitremote ]
                 then
                         git pull
