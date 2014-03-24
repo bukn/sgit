@@ -27,7 +27,6 @@ then
                         git init
                         echo "It's your very first time to use sgit."
                         echo "Please execute sgit setremote to config remote info(needed by the 'push'/'pull' subcommand)"
-                        #echo "Please cd to $repo_dir to config your git remote info(needed by the 'push'/'pull' subcommand)"
                 fi
                 if [ -f $filename_fullpath ]
                 then
@@ -52,7 +51,6 @@ then
                 git init
                 echo "It's your very first time to use sgit."
                 echo "Please execute sgit setremote to config remote info(needed by the 'push'/'pull' subcommand)"
-                #echo "Please cd to $repo_dir to config your git remote info(needed by the 'push'/'pull' subcommand)"
         fi
 else
         echo 'Usage: sgit [ci] filename'
