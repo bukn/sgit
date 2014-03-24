@@ -17,6 +17,18 @@ then
                 filename_fullpath=$PWD/$1
                 subcmd='none'
                 #copy file
+                if ! [ -d $repo_dir ]
+                then
+                        mkdir -v $repo_dir
+                fi
+                cd $repo_dir
+                if ! [ -d .git ]
+                then
+                        git init
+                        echo "It's your very first time to use sgit."
+                        echo "Please execute sgit setremote to config remote info(needed by the 'push'/'pull' subcommand)"
+                        #echo "Please cd to $repo_dir to config your git remote info(needed by the 'push'/'pull' subcommand)"
+                fi
                 if [ -f $filename_fullpath ]
                 then
                         ! [ -f  $repo_filename ] &&  ln -Lv $filename_fullpath $repo_filename
@@ -39,7 +51,7 @@ then
         then
                 git init
                 echo "It's your very first time to use sgit."
-                echo "Please execute sgit cfgremote to config remote info(needed by the 'push'/'pull' subcommand)"
+                echo "Please execute sgit setremote to config remote info(needed by the 'push'/'pull' subcommand)"
                 #echo "Please cd to $repo_dir to config your git remote info(needed by the 'push'/'pull' subcommand)"
         fi
 else
